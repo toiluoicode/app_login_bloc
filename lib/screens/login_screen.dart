@@ -69,18 +69,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   );
                 },
               ),
-              MaterialButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignScreen()),
-                  );
-                },
-                child: Text(
-                  "Not having account ? Sign Up",
-                  style: TextStyle(color: Colors.deepPurple, fontSize: 20),
-                ),
-              ),
+              // MaterialButton(
+              //   onPressed: () {
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(builder: (context) => SignScreen()),
+              //     );
+              //   },
+              //   child: Text(
+              //     "Not having account ? Sign Up",
+              //     style: TextStyle(color: Colors.deepPurple, fontSize: 20),
+              //   ),
+              // ),
             ],
           );
         },

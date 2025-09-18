@@ -5,6 +5,7 @@ import 'package:login_app_bloc/blocs/contact_list/contact_events.dart';
 import 'package:login_app_bloc/blocs/contact_list/contact_state.dart';
 import '../entitys/contact.dart';
 import '../entitys/user.dart';
+import '../widgets/displaye/ContactItem.dart';
 
 class ListContactScreen extends StatefulWidget {
   User user;
@@ -68,7 +69,6 @@ class _ListContactScreenState extends State<ListContactScreen> {
       },
     );
   }
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -87,41 +87,7 @@ class _ListContactScreenState extends State<ListContactScreen> {
                 itemCount: contacts.length,
                 itemBuilder: (context, index) {
                   final contact = contacts[index];
-                  return Dismissible(
-                    key: Key(contact.name + contact.phone),
-                    direction: DismissDirection.endToStart,
-                    background: Container(
-                      color: Colors.red,
-                      alignment: Alignment.centerRight,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Icon(Icons.delete, color: Colors.white),
-                    ),
-                    onDismissed: (direction) {
-                      context.read<ContactBloc>().add(DeleteContact(contact));
-                    },
-                    child: GestureDetector(
-                      onTap: () {
-                        // update contact
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Row(
-                          children: [
-                            CircleAvatar(child: Text(contact.name[0])),
-                            SizedBox(width: 20),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(contact.name),
-                                Text(contact.phone),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-
-                  );
+                  return ContactItem(contact: contact);
                 },
               );
             } else {
