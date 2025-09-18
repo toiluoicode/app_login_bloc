@@ -18,8 +18,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     emit(LoginLoading());
     await Future.delayed(const Duration(seconds: 1));
     try {
-      // final List<User> users = await UserStorage.loadUsers();
-      final User user = mockUsers.firstWhere(
+      final List<User> users = await UserStorage.loadUsers();
+      final User user = users.firstWhere(
         (u) => u.userName == event.userName && u.passWord == event.passWord,
       );
       emit(LoginSuccess(user));

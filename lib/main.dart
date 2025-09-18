@@ -4,9 +4,9 @@ import 'package:login_app_bloc/blocs/login/login_bloc.dart';
 import 'package:login_app_bloc/screens/login_screen.dart';
 import 'package:login_app_bloc/storage/app_data.dart';
 
-void main()   {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await AppData.initData();
+void main()   async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await AppData.initData();
   runApp(
     MultiBlocProvider(
         providers: [
