@@ -10,7 +10,6 @@ class ContactItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final contactBloc = context.read<ContactBloc>();
-
     return Dismissible(
       key: Key(contact.name + contact.phone),
       direction: DismissDirection.endToStart,

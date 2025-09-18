@@ -27,5 +27,4 @@ class UpdateContact extends ContactListEvent{
   @override
   // TODO: implement props
   List<Object?> get props => [];
-
 }

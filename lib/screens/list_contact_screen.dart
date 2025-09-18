@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:login_app_bloc/blocs/contact_list/contact_bloc.dart';
-import 'package:login_app_bloc/blocs/contact_list/contact_events.dart';
 import 'package:login_app_bloc/blocs/contact_list/contact_state.dart';
-import '../entitys/contact.dart';
+import 'package:login_app_bloc/widgets/displaye/add_form_contatct.dart';
 import '../entitys/user.dart';
 import '../widgets/displaye/ContactItem.dart';
 
 class ListContactScreen extends StatefulWidget {
   User user;
-
   ListContactScreen({super.key, required this.user});
 
   @override
@@ -17,58 +15,6 @@ class ListContactScreen extends StatefulWidget {
 }
 
 class _ListContactScreenState extends State<ListContactScreen> {
-  final _nameController = TextEditingController();
-  final _phoneController = TextEditingController();
-
-  void _showAddContactForm(BuildContext context) {
-    final contactBloc = context.read<ContactBloc>();
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text("Thêm Contact"),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: _nameController,
-                decoration: const InputDecoration(
-                  labelText: "Tên",
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: _phoneController,
-                decoration: const InputDecoration(
-                  labelText: "Số điện thoại",
-                  border: OutlineInputBorder(),
-                ),
-                keyboardType: TextInputType.phone,
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              child: const Text("Đóng"),
-              onPressed: () => Navigator.pop(context),
-            ),
-            ElevatedButton(
-              child: const Text("Lưu"),
-              onPressed: () {
-                final newContact = Contact(
-                  name: _nameController.text,
-                  phone: _phoneController.text,
-                );
-                contactBloc.add(AddContact(contact: newContact));
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -99,7 +45,14 @@ class _ListContactScreenState extends State<ListContactScreen> {
           builder: (context) {
             return FloatingActionButton(
               onPressed: () {
-                _showAddContactForm(context);
+                showDialog(
+                    context: context,
+                    builder: (_){
+                      return BlocProvider.value(value: context.read<ContactBloc>(),
+                      child: AddFormContatct(),
+                      );
+                    }
+                );
               },
               child: Icon(Icons.add),
             );

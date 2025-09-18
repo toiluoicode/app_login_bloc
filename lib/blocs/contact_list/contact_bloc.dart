@@ -17,13 +17,13 @@ class ContactBloc extends Bloc<ContactListEvent,ContactListState>{
     if (state is ContactListLoad) {
       final currentState = state as ContactListLoad;
       final updateUser =  currentState.user.coppyWithList(listContact: List<Contact>.from(currentState.user.listContact)..add(event.contact));
-      emit(ContactListLoad(updateUser));
       List<User> users = await UserStorage.loadUsers();
       int index = users.indexWhere((u) => u.userName == updateUser.userName);
       if (index != -1) {
         users[index] = updateUser;
         await UserStorage.saveData(users);
       }
+      emit(ContactListLoad(updateUser));
     }
   }
   void _DeleteContact(DeleteContact event, Emitter<ContactListState> emit) async {
@@ -31,13 +31,13 @@ class ContactBloc extends Bloc<ContactListEvent,ContactListState>{
       final currentState = state as ContactListLoad;
       final afterDelete = currentState.user.listContact.where((c)=> c.name != event.contact.name ).toList();
       final updateUser = currentState.user.coppyWithList(listContact: afterDelete);
-      emit(ContactListLoad(updateUser));
       List<User> users = await UserStorage.loadUsers();
       int index = users.indexWhere((u) => u.userName == updateUser.userName);
       if (index != -1) {
         users[index] = updateUser;
         await UserStorage.saveData(users);
       }
+      emit(ContactListLoad(updateUser));
     }
   }
 }
