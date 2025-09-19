@@ -15,14 +15,12 @@ class AddFormContatct extends StatelessWidget {
       name: _nameController.text.trim(),
       phone: _phoneController.text.trim(),
     );
-
     if (newContact.name.isEmpty || newContact.phone.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Tên hoặc số điện thoại trống")),
       );
       return;
     }
-
     context.read<ContactBloc>().add(AddContact(contact: newContact));
     Navigator.pop(context);
   }
