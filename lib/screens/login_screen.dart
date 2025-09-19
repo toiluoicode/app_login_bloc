@@ -4,6 +4,7 @@ import 'package:login_app_bloc/blocs/login/login_bloc.dart';
 import 'package:login_app_bloc/blocs/login/login_event.dart';
 import 'package:login_app_bloc/blocs/login/login_state.dart';
 import 'package:login_app_bloc/screens/list_contact_screen.dart';
+import 'package:login_app_bloc/screens/sign_screen.dart';
 import 'package:login_app_bloc/widgets/buttons/Custome_loginbutton.dart';
 import 'package:login_app_bloc/widgets/inputs/custom_textfield.dart';
 
@@ -33,8 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 builder: (_) => ListContactScreen(user: state.user),
               ),
             );
-            userNameTextEditing.clear();
-            passWordTextEditing.clear();
+
           } else if (state is LoginFailed) {
             ScaffoldMessenger.of(
               context,
@@ -70,6 +70,33 @@ class _LoginScreenState extends State<LoginScreen> {
                   );
                 },
               ),
+              MaterialButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignScreen()),
+                  );
+                },
+                child: Text(
+                  "Not having account ? Sign Up",
+                  style: TextStyle(color: Colors.black, fontSize: 15),
+                ),
+              ),
+              Text("or"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton.icon(
+                      onPressed: () {},
+                      label: Text("GOOGLE", style: TextStyle(color: Colors.black))
+                  ),
+                  SizedBox(width: 10,),
+                  ElevatedButton.icon(
+                      onPressed: () {},
+                      label: Text("FACE BOOK", style: TextStyle(color: Colors.black),)
+                  )
+                ],
+              )
             ],
           );
         },
