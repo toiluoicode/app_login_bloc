@@ -3,13 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:login_app_bloc/blocs/login/login_event.dart';
 import 'package:login_app_bloc/blocs/login/login_state.dart';
 import 'package:login_app_bloc/entitys/user.dart';
-import 'package:login_app_bloc/mock/mock_data.dart';
 import 'package:login_app_bloc/storage/user_storage.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(LoginInit()) {
     on<LoginButtonPress>(_onPressLoginButton);
-    on<LoginReset>(_onResetLogin);
+
   }
   Future<void> _onPressLoginButton(
     LoginButtonPress event,
@@ -26,8 +25,5 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     } catch (e) {
       emit(LoginFailed(null));
     }
-  }
-  void _onResetLogin(LoginReset event, Emitter<LoginState> emit) {
-    emit(LoginInit());
   }
 }

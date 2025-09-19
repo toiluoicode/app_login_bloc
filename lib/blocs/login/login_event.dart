@@ -10,6 +10,3 @@ abstract class LoginEvent extends Equatable {
 class LoginButtonPress extends LoginEvent{
   LoginButtonPress(super.userName, super.passWord);
 }
-class LoginReset extends LoginEvent {
-  LoginReset(super.userName, super.passWord);
-}

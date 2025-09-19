@@ -24,7 +24,10 @@ class DeleteContact extends ContactListEvent {
 
 }
 class UpdateContact extends ContactListEvent{
+  final Contact oldcontact;
+  final Contact newcontact;
+  UpdateContact({required this.oldcontact, required this.newcontact});
   @override
   // TODO: implement props
-  List<Object?> get props => [];
+  List<Object?> get props => [oldcontact, newcontact];
 }
