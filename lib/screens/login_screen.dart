@@ -34,7 +34,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 builder: (_) => ListContactScreen(user: state.user),
               ),
             );
-
+            userNameTextEditing.clear();
+            passWordTextEditing.clear();
           } else if (state is LoginFailed) {
             ScaffoldMessenger.of(
               context,
